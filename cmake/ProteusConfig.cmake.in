@@ -1,0 +1,29 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+set(PROTEUS_GRAPHICS_BACKEND "@GRAPHICS_BACKEND@")
+
+find_dependency(glm)
+find_dependency(glfw3)
+if(PROTEUS_GRAPHICS_BACKEND STREQUAL "OpenGL")
+    find_dependency(OpenGL)
+elseif(PROTEUS_GRAPHICS_BACKEND STREQUAL "Vulkan")
+    find_dependency(Vulkan)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/ProteusTargets.cmake")
+
+# Attach the deps that were kept out of the export set
+set_property(TARGET proteus::proteus APPEND PROPERTY
+    INTERFACE_LINK_LIBRARIES glm::glm)
+
+# A static Proteus also needs GLFW at the consumer's link step
+get_target_property(_proteus_type proteus::proteus TYPE)
+if(_proteus_type STREQUAL "STATIC_LIBRARY")
+    set_property(TARGET proteus::proteus APPEND PROPERTY
+        INTERFACE_LINK_LIBRARIES "$<LINK_ONLY:glfw>")
+endif()
+unset(_proteus_type)
+
+check_required_components(Proteus)
