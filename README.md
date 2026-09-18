@@ -12,11 +12,11 @@ What Prompted This?
 <!-- Much as I'd love to present this, as VP I'm not allowed to lol -->
 A hackathon prompt from the September 2026 hackathon hosted by the [Memorial University Computer Science Society](https://muncompsci.ca). The prompt of that being; "Improve a piece of software you use each day, or solve a problem you encounter in your day-to-day life."
 
-<!-- Maybe a bit too opinionated? I dunno. -->
-So, _why?_ Well, I've personally had problems with most major game engines that I cannot solve:
- 1. Unreal Engine is _massively_ over-engineered for most indie projects.
- 2. Godot Engine has _questionable_ to poor UIs and should be completely re-written.
- 3. Unity Engine is just, a _terrible_ game engine and it should not exist.
+<!-- I fixed it, it now sounds more normal! -->
+So, _why?_ Well, I've personally had problems with the major game engines that I struggle to get past:
+ 1. Unreal Engine is massively over-engineered for the kinds of projects I find myself working on.
+ 2. Godot Engine is built around its editor, with no convenient way to use its APIs or GDScript _directly_.
+ 3. I no longer wish to support Unity after losing trust in the company over the 2023 runtime fee mess.
 
 Thus, Proteus. My solution, a code-focused game development library that _just works_.
 
@@ -29,4 +29,4 @@ Features
 License
 -----------------
 
-Proteus is licensed under the copyleft GNU General Public License 3.0.
+Proteus is licensed under the copyleft-permissive Mozilla Public License 2.0.
