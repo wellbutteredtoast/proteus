@@ -1,0 +1,15 @@
+# Build / Misc directories created at compile time
+build/
+dist/
+bin/
+
+# C headers/impls - any C source code (since this is C++ only)
+*.c
+*.h
+
+# Scripting languages that aren't planned to be used
+*.rb
+*.py
+*.pyi
+*.pyw
+*.lua
