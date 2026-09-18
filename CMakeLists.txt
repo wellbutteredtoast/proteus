@@ -35,6 +35,8 @@ project(
     LANGUAGES C CXX
 )
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 option(PROTEUS_INSTALL "Generate install rules for Proteus" ${PROJECT_IS_TOP_LEVEL})
 
 get_property(_is_multi_config GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
