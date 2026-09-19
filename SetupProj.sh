@@ -4,8 +4,6 @@
 # Using (sh) for maximal compatability
 # SPDX-License-Identifier: MPL-2.0
 
-set -eu
-
 info() {
     printf '[?] :: %s\n' "$*"
 }
@@ -21,6 +19,21 @@ err() {
 sleep 1
 ok "========== Proteus Engine Setup =========="
 info "Preparing to set up the project..."
+
+if [ $1 = "--purge" ]; then
+    info "Purging all build artifacts and dependencies..."
+    rm -rf Build
+    rm -rf Dependencies
+    rm -f *.ninja
+    rm -f *.make
+    rm -f Makefile
+    rm -f .psetupdone
+    rm -f .pbuilddone
+    ok "Purge complete. Rerun script to setup the project again."
+    exit 0
+else
+    continue
+fi
 
 if [ -f ".psetupdone" ] || [ -f ".pbuilddone" ]; then
     ok "Setup has already been done before, to redo setup, do the following:"

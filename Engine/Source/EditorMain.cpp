@@ -5,5 +5,5 @@
 
 int main(int argc, char* argv[])
 {
-    return 0;
+    return static_cast<int>(Meta::ReturnInfo::Code::kSuccess);
 }
