@@ -26,6 +26,9 @@ if [ -f ".psetupdone" ] || [ -f ".pbuilddone" ]; then
     ok "Setup has already been done before, to redo setup, do the following:"
     ok " rm -rf Build"
     ok " rm -rf Dependencies"
+    ok " rm -f *.ninja"
+    ok " rm -f *.make"
+    ok " rm -f Makefile"
     ok " rm -f .psetupdone"
     ok "And rerun the setup script."
     exit 0

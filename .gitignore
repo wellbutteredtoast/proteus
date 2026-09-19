@@ -118,3 +118,9 @@ obj/
 # OS cruft (pretty old now but being careful anyways)
 .DS_Store
 Thumbs.db
+
+# Premake5 outputs
+*.ninja
+*.sln
+*.make
+*.mak
