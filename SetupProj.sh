@@ -148,3 +148,90 @@ fi
 sleep 1
 info "Tooling check complete, moving on to dependency fecthing..."
 
+MANIFEST="$PWD/manifest.txt"
+DEPSDIR="$PWD/Dependencies"
+
+if [ ! -f "$MANIFEST" ]; then
+    err "No manifest.txt found in $PWD !"
+    exit 1
+fi
+
+# Fetch a dep, checkout its head and pin it good
+fetch_pinned() {
+    _url="$1"
+    _sha="$2"
+    _dest="$3"
+
+    git init -q "$_dest" >/dev/null 2>&1 || return 1
+    git -C "$_dest" remote add origin "$_url" >/dev/null 2>&1 || true
+    git -C "$_dest" fetch -q --depth 1 origin "$_sha" >/dev/null 2>&1 || return 1
+    git -C "$_dest" checkout -q FETCH_HEAD >/dev/null 2>&1 || return 1
+}
+
+# Read via fd so git or something else doesn't eat our data
+exec 3< "$MANIFEST"
+while IFS=' ' read -r url sha rest <&3; do
+    # Skip blank lines and comments
+    case "$url" in
+        ''|\#*) continue ;;
+    esac
+
+    if [ -z "$sha" ]; then
+        err "Malformed manifest entry (no commit hash): $url"
+        exit 1
+    fi
+
+    # Reject anything that isn't the full hash: short hashes and
+    # tags are ambiguous or mutable, making this pointless
+    if ! printf '%s' "$sha" | grep -Eq '^[0-9a-f]{40}$'; then
+        err "Invalid commit hash for $url"
+        err "(Expected a full hash, got: $sha)"
+        exit 1
+    fi
+
+    # Derive dir name from the repo URL: .../glfw.git -> glfw
+    name=$(basename "$url" .git)
+    dest="$DEPSDIR/$name"
+
+    if [ -d "$dest/.git" ]; then
+        current=$(git -C "$dest" rev-parse HEAD 2>/dev/null || echo "")
+        if [ "$current" = "$sha" ]; then
+            info "$name already at pinned commit, skipping."
+            continue
+        fi
+        info "$name is at the wrong commit, refetching..."
+        rm -rf "$dest"
+    elif [ -d "$dest" ]; then
+        err "$dest exists but is not a git repo, refusing to touch it."
+        exit 1
+    fi
+
+    info "Fetching $name ..."
+    if ! fetch_pinned "$url" "$sha" "$dest"; then
+        err "Failed to fetch $name at $sha"
+        err "(Check the URL and that the commit still exists upstream)"
+        rm -rf "$dest"
+        exit 1
+    fi
+
+    # Paranoia: confirm we actually landed where we meant to
+    landed=$(git -C "$dest" rev-parse HEAD 2>/dev/null || echo "")
+    if [ "$landed" != "$sha" ]; then
+        err "$name checked out $landed but manifest pins $sha"
+        exit 1
+    fi
+
+    ok "$name pinned to $sha"
+done
+exec 3<&-
+
+ok "All dependencies fetched and verified."
+
+touch .psetupdone
+info "Setup is now complete, you can run premake:"
+ok "    premake5 gmake"
+ok "    premake5 ninja"
+ok "    premake5 vs2026"
+ok "    premake5 xcode4"
+sleep 2
+exit 0
