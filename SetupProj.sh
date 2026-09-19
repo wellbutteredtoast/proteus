@@ -22,7 +22,7 @@ sleep 1
 ok "========== Proteus Engine Setup =========="
 info "Preparing to set up the project..."
 
-if [ -f ".psetupdone" || -f ".pbuilddone" ]; then
+if [ -f ".psetupdone" ] || [ -f ".pbuilddone" ]; then
     ok "Setup has already been done before, to redo setup, do the following:"
     ok " rm -rf Build"
     ok " rm -rf Dependencies"
@@ -141,3 +141,4 @@ fi
 
 sleep 1
 info "Tooling check complete, moving on to dependency fecthing..."
+
