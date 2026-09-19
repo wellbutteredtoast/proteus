@@ -1,7 +1,12 @@
-# Build / Misc directories created at compile time
-build/
-dist/
-bin/
+# Build / Misc directories created at compile or config time
+[Bb]uild/
+[Dd]ependencies/
+[Dd]ist/
+[Bb]in/
+
+# Special files used to denote certain stages of config
+.psetupdone
+.pbuilddone
 
 # C headers/impls - any C source code (since this is C++ only)
 *.c
@@ -13,3 +18,93 @@ bin/
 *.pyi
 *.pyw
 *.lua
+*.luac
+
+# Batch / Windows CMD files (we do not support these)
+*.com
+*.cmd
+*.bat
+
+# Old-style macOS command files (we do not use these)
+*.command
+
+# Terminal specific stuff we don't want to deal with
+*.ksh
+*.zsh
+*.csh
+*.ash
+*.fish
+
+# Actual binary blobs, executables, we do not track these
+*.exe
+*.out
+*.elf
+*.dll
+
+# Compiler intermediates
+*.[iI]
+*.[dD]
+*.[sS]
+*.o
+*.o.d
+*.ilk
+*.pdb
+*.obj
+*.exp
+*.map
+*.ld
+*.lld
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Libraries and archives
+lib*.a
+lib*.so
+*.a
+*.so
+*.so.*
+*.dylib
+*.lib
+
+# LLVM tooling
+.cache/
+*.profraw
+*.profdata
+compile_commands.json
+
+# GCC / gcov coverage
+*.gcda
+*.gcno
+*.gcov
+
+# MSVC / MSBuild intermediates
+*.idb
+*.iobj
+*.ipdb
+*.tlog
+*.lastbuildstate
+*.sbr
+*.res
+
+# Core dumps
+core
+core.*
+
+# Patch/merge leftovers for the brave git users
+*.orig
+*.rej
+
+# Logs
+*.log
+
+# Editor / IDE stuff
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS cruft (pretty old now but being careful anyways)
+.DS_Store
+Thumbs.db
