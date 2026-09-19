@@ -10,7 +10,7 @@ What Inspired This?
 -----------------
 
 <!-- Much as I'd love to present this, as VP I'm not allowed to lol -->
-A hackathon prompt from the September 2026 hackathon hosted by the [Memorial University Computer Science Society](https://muncompsci.ca). The prompt of that being; "Improve a piece of software you use each day, or solve a problem you encounter in your day-to-day life."
+A hackathon prompt from the September 2026 hackathon hosted by the [Memorial University Computer Science Society](https://muncompsci.ca). The prompt: _"Improve a piece of software you use each day, or solve a problem you encounter in your day-to-day life."_
 
 <!-- I sure can't wait for this to disappear as soon as multiple contributors show up -->
 So, _why?_ Well, I've personally had problems with the major game engines that I struggle to get past:
@@ -28,4 +28,4 @@ Features
 License
 -----------------
 
-Proteus is licensed under the copyleft-permissive Mozilla Public License 2.0.
+Proteus is licensed under the weak copyleft Mozilla Public License 2.0. This license ensures that improvements are open-source and can be upstreamed into the main development branch. Unmodified files can be used as-is, where-is under the terms in the [license file](./LICENSE)
