@@ -30,8 +30,23 @@ Building Proteus
 
 While we offer pre-built binaries and libraries, you can also choose to compile this yourself on your own hardware. We don't use a _standardized_ build system, though. Proteus must be setup through the `SetupProj` script in the repo root, which may take a minute or two depending on your hardware configuration. From there you'll be instructed on how to start compilation with `premake5`.
 
+If you do not have premake5 installed, you can install it from most popular package managers:
+```
+# Apple Silicon macOS
+brew install premake
+
+# Debian / APT based Linux
+sudo apt-get install premake -y
+
+# Arch Linux
+sudo pacman -Sy --needed premake
+
+# Windows via winget
+winget install Premake.Premake.5.Beta
+```
+
 > [!NOTE]
-> Most of these scripts were tested on an M2 Macbook Air with 8GiB of Unifed Memory, so on most workstations you should see faster config and build times.
+> Most of these scripts were tested on an M2 Macbook Air with 8GiB of Unifed Memory, so on most workstations you should see faster config and build times overall.
 
 License
 -----------------

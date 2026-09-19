@@ -11,7 +11,13 @@ local BUILD_DIR     = ROOT .. "/Build"
 local GLFW_SRC      = DEPS .. "/glfw"
 local GLFW_BUILD    = BUILD_DIR .. "/glfw"
 local IMGUI_SRC     = DEPS .. "/imgui"
- 
+local FLAG_FILE     = ROOT .. "/.pbuilddone"
+
+if os.isfile(FLAG_FILE) then
+    print("[premake] build already completed, no thanks mate.")
+    print("[premake] run `rm -f .pbuilddone` if you want me to build again.")
+    os.exit(0)
+end
 
 --[[
 #1 -> This is where GLFW gets built, despite using premake we shell out to
@@ -130,3 +136,8 @@ project "Proteus"
         links { "glfw3", "opengl32" }
  
     filter {}
+
+    postbuildcommands {
+        '{ECHO} [premake] Build succeeded!',
+        '{TOUCH} "' .. FLAG_FILE .. '"'
+    }
