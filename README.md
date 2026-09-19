@@ -25,6 +25,14 @@ Features
 > [!IMPORTANT]
 > To avoid over-promising features, this is left intentionally blank while the project finds footing.
 
+Building Proteus
+-----------------
+
+While we offer pre-built binaries and libraries, you can also choose to compile this yourself on your own hardware. We don't use a _standardized_ build system, though. Proteus must be setup through the `SetupProj` script in the repo root, which may take a minute or two depending on your hardware configuration.
+
+> [!NOTE]
+> Most of these scripts were tested on an M2 Macbook Air with 8GiB of Unifed Memory, so on most workstations you should see faster config and build times.
+
 License
 -----------------
 

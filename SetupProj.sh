@@ -102,30 +102,36 @@ check_target_arch() {
     ok "clang++ default target ($compiler_triple) matches host ($host_arch)."
 }
  
-for dep in git curl make lldb gdb clang++; do
+for dep in git curl make cmake premake5 lldb gdb clang++; do
     if ! command -v "$dep" >/dev/null 2>&1; then
         err "Missing dependency $dep !"
         continue
     fi
     case "$dep" in
         make)
-            info 'Make version:  '  "$(get_version "make --version")"
+            info 'Make version:    '  "$(get_version "make --version")"
             ;;
         git)
-            info 'Git  version:  '  "$(get_version "git --version")"
+            info 'Git  version:    '  "$(get_version "git --version")"
             ;;
         curl)
-            info 'Curl version:  '  "$(get_version "curl --version")"
+            info 'Curl version:    '  "$(get_version "curl --version")"
             ;;
         lldb)
-            info 'LLDB version:  '  "$(get_version "lldb --version")"
+            info 'LLDB version:    '  "$(get_version "lldb --version")"
             ;;
         gdb)
-            info 'GDB  version:  '  "$(get_version "gdb --version")"
+            info 'GDB  version:    '  "$(get_version "gdb --version")"
             ;;
         clang++)
-            info 'Clang version: '  "$(get_version "clang++ --version")"
+            info 'Clang version:   '  "$(get_version "clang++ --version")"
             check_target_arch || exit 1
+            ;;
+        cmake)
+            info 'CMake version:   ' "$(get_version "cmake --version")"
+            ;;
+        premake5)
+            info 'Premake version: ' "$(get_version "premake5 --version")"
             ;;
     esac
 done

@@ -17,8 +17,6 @@
 *.py
 *.pyi
 *.pyw
-*.lua
-*.luac
 
 # Batch / Windows CMD files (we do not support these)
 *.com
@@ -91,6 +89,18 @@ compile_commands.json
 # Core dumps
 core
 core.*
+
+# Premake generated project/build files
+Makefile
+*.make
+.vs/
+*.vcxproj
+*.vcxproj.*
+*.sln
+*.xcodeproj/
+*.xcworkspace/
+obj/
+
 
 # Patch/merge leftovers for the brave git users
 *.orig
