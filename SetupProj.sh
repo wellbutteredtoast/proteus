@@ -231,10 +231,11 @@ exec 3<&-
 ok "All dependencies fetched and verified."
 
 touch .psetupdone
+rm -rf build
 info "Setup is now complete, you can run premake:"
 ok "    premake5 gmake"
 ok "    premake5 ninja"
 ok "    premake5 vs2026"
 ok "    premake5 xcode4"
-sleep 2
+sleep 1
 exit 0

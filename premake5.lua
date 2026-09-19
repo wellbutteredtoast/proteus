@@ -6,8 +6,8 @@ require("ninja")
 require("os")
 
 local ROOT          = _MAIN_SCRIPT_DIR
-local DEPS          = ROOT .. "/dependencies"
-local BUILD_DIR     = ROOT .. "/build"
+local DEPS          = ROOT .. "/Dependencies"
+local BUILD_DIR     = ROOT .. "/Build"
 local GLFW_SRC      = DEPS .. "/glfw"
 local GLFW_BUILD    = BUILD_DIR .. "/glfw"
 local IMGUI_SRC     = DEPS .. "/imgui"
